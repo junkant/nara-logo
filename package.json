@@ -1,0 +1,20 @@
+{
+  "name": "nara-logo",
+  "version": "0.0.0",
+  "description": "Webcomponent nara-logo following open-wc recommendations",
+  "author": "nara-logo",
+  "license": "MIT",
+  "main": "index.js",
+  "module": "index.js",
+  "scripts": {
+    "start": "es-dev-server --app-index demo/index.html --node-resolve --open --watch",
+    "start:compatibility": "es-dev-server --app-index demo/index.html --compatibility all --node-resolve --open --watch"
+  },
+  "dependencies": {
+    "lit-html": "^1.0.0",
+    "lit-element": "^2.0.1"
+  },
+  "devDependencies": {
+    "es-dev-server": "^1.5.0"
+  }
+}
