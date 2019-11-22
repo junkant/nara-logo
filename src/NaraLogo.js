@@ -21,13 +21,19 @@ export class NaraLogo extends LitElement {
       __logo: { type: String },
     };
   }
+
+  pathFromUrl(url) {
+    return url.substring(0, url.lastIndexOf("/") + 1);
+  }
   /**
    * HTMLElement
    */
   constructor() {
     super();
     this.format = 'stack';
+    this.basePath = this.pathFromUrl(decodeURIComponent(import.meta.url));
   }
+
   /**
    * LitElement life cycle - render
    */
@@ -46,11 +52,11 @@ export class NaraLogo extends LitElement {
           case 'stack':
           case 'horizontal':
           case 'eagle':
-            this.__logo = `/nara-logo-${this[propName]}.svg`;
+            this.__logo = `${this.basePath}/nara-logo-${this[propName]}.svg`;
             break;
           // this way if someone screws it up it still does something
           default:
-            this.__logo = `/nara-logo-stack.svg`;
+            this.__logo = `${this.basePath}/nara-logo-stack.svg`;
             break;
         }
       }
