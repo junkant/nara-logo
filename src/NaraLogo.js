@@ -7,8 +7,12 @@ export class NaraLogo extends LitElement {
   static get styles() {
     return [css`
       :host {
-        display: block;
+        display: inline-flex;
         padding: var(--nara-logo-padding, 5px);
+      }
+      img {
+        width: var(--nara-logo-width, auto);
+        height: var(--nara-logo-height, auto);
       }
     `];
   }
