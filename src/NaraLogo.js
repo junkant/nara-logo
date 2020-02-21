@@ -22,12 +22,9 @@ export class NaraLogo extends LitElement {
   static get properties() {
     return {
       format: { type: String },
-      __logo: { type: String },
+      basePath: { type: String, attribute: "base-path" },
+      __logo: { type: String }
     };
-  }
-
-  pathFromUrl(url) {
-    return url.substring(0, url.lastIndexOf("/") + 1);
   }
   /**
    * HTMLElement
@@ -35,15 +32,14 @@ export class NaraLogo extends LitElement {
   constructor() {
     super();
     this.format = 'stack';
-    this.basePath = this.pathFromUrl(decodeURIComponent(import.meta.url));
+    this.basePath = this.basePath = new URL('.', import.meta.url).pathname;
   }
-
   /**
    * LitElement life cycle - render
    */
   render() {
     return html`
-      <img src="${this.__logo}" alt="" />
+      <img src="${this.basePath}/${this.__logo}" alt="" />
     `;
   }
   /**
@@ -51,16 +47,16 @@ export class NaraLogo extends LitElement {
    */
   updated(changedProperties) {
     changedProperties.forEach((oldValue, propName) => {
-      if (propName == 'format') {
+      if (propName == "format") {
         switch (this[propName]) {
           case 'stack':
           case 'horizontal':
           case 'eagle':
-            this.__logo = `${this.basePath}/nara-logo-${this[propName]}.svg`;
+            this.__logo = `nara-logo-${this[propName]}.svg`;
             break;
           // this way if someone screws it up it still does something
           default:
-            this.__logo = `${this.basePath}/nara-logo-stack.svg`;
+            this.__logo = `nara-logo-stack.svg`;
             break;
         }
       }
