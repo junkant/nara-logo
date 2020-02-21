@@ -35,7 +35,7 @@ export class NaraLogo extends LitElement {
   constructor() {
     super();
     this.format = 'stack';
-    this.basePath = this.pathFromUrl(decodeURIComponent(import.meta.url));
+    this.basePath = new URL('.', import.meta.url).pathname;
   }
 
   /**
@@ -43,7 +43,7 @@ export class NaraLogo extends LitElement {
    */
   render() {
     return html`
-      <img src="${this.__logo}" alt="" />
+      <img src="${this.__logo}" loading="lazy" alt="" />
     `;
   }
   /**
